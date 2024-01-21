@@ -6,13 +6,13 @@ const port = process.env.PORT || 3000;
 
 const favorites = {
   color: "blue",
-  food: "pizza",
-  drink: "coffee",
-  animal: "dog",
-  movie: "The Dark Knight",
-  book: "The Alchemist",
-  song: "Bohemian Rhapsody",
-  sport: "soccer",
+  food: "tacos",
+  drink: "tea",
+  animal: "dogs",
+  movie: "Tangled",
+  book: "Any book by Jules Verne",
+  song: "fractures by Illenium",
+  sport: "Formula 1 (f1)",
   subject: "math",
   season: "summer",
 };
@@ -44,6 +44,8 @@ app.post("/", (req, res) => {
   } else if (type.includes("favorite")) {
     type = "tell me your favorite";
     favorite = req.body.queryResult.parameters["favorite"];
+    console.log(favorite);
+    console.log(favorites[favorite]);
     res.status(200).send({
       fulfillmentMessages: [
         {
