@@ -18,14 +18,15 @@ app.listen(port, () => {
 app.post("/", (req, res) => {
   let type = req.body.queryResult.intent.displayName;
   let reqUrl = "";
-  console.log(type);
 
   if (type.includes("joke")) {
+    type = "tell me a joke";
     reqUrl = "http://official-joke-api.appspot.com/random_joke";
   } else if (type.includes("activity")) {
+    type = "give me an activity";
     reqUrl = "http://www.boredapi.com/api/activity/";
   } else {
-    res.status(400).send("Invalid type");
+    res.status(400).send("Invalid typeee");
   }
 
   fetch(reqUrl, {
