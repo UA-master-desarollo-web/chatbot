@@ -20,12 +20,9 @@ app.post("/", (req, res) => {
   let reqUrl = "";
   console.log(type);
 
-  if (type == "tell me a joke" || type == "tell me a joke - repeat") {
+  if (type.includes("joke")) {
     reqUrl = "http://official-joke-api.appspot.com/random_joke";
-  } else if (
-    type == "give me an activity" ||
-    type == "give me an activity - repeat"
-  ) {
+  } else if (type.includes("activity")) {
     reqUrl = "http://www.boredapi.com/api/activity/";
   } else {
     res.status(400).send("Invalid type");
