@@ -29,6 +29,7 @@ app.listen(port, () => {
 });
 
 app.post("/", (req, res) => {
+  console.log(req.body);
   let type = req.body.queryResult.intent.displayName;
   let reqUrl = "";
 
