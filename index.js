@@ -33,7 +33,50 @@ app.post("/", (req, res) => {
   })
     .then((response) => response.json())
     .then((json) => {
+      let responseText = processResponse(type, json);
+      res.json({
+        fulfillmentMessages: [
+          {
+            text: {
+              text: [responseText],
+            },
+          },
+        ],
+      });
+    })
+    .then((json) => {
       res.status(200).send(json);
     })
     .catch((error) => res.status(400).send("Error" + error));
 });
+
+let processJoke = (joke) => {
+  let setup = joke.setup;
+  let punchline = joke.punchline;
+  return setup + "\n" + punchline;
+};
+
+let processActivity = (activity) => {
+  let activityName = activity.activity;
+  let type = activity.type;
+  let participants = activity.participants;
+  return (
+    activityName +
+    "\n" +
+    "Type: " +
+    type +
+    "\n" +
+    "Participants: " +
+    participants
+  );
+};
+
+let processResponse = (type, response) => {
+  if (type == "tell me a joke") {
+    return processJoke(response);
+  } else if (type == "give me an activity") {
+    return processActivity(response);
+  } else {
+    return "Invalid type";
+  }
+};
