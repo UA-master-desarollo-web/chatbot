@@ -43,10 +43,8 @@ app.post("/", (req, res) => {
     reqUrl = "https://uselessfacts.jsph.pl/random.json?language=en";
   } else if (type.includes("favorite")) {
     type = "tell me your favorite";
-    favorite = req.body.queryResult.parameters["favorite"];
-    console.log(favorite);
-    console.log(favorites[favorite]);
-    res.status(200).send({
+    let favorite = req.body.queryResult.parameters["favorite"];
+    return res.status(200).send({
       fulfillmentMessages: [
         {
           text: {
