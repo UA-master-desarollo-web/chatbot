@@ -18,6 +18,7 @@ app.listen(port, () => {
 app.post("/", (req, res) => {
   let type = req.body.queryResult.intent.displayName;
   let reqUrl = "";
+  console.log(type);
 
   if (type == "tell me a joke" || type == "tell me a joke - repeat") {
     reqUrl = "http://official-joke-api.appspot.com/random_joke";
