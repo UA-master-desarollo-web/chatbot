@@ -38,8 +38,8 @@ Despliegue del chatbot en su versión web-demo, o en alguna plataforma de mensaj
 
 Realizar intenciones que impliquen la consulta de servicios, APIs externas mediante webhook. En tal caso, se debe incluir en la entrega la descripción del Fullfilment y conexión con la API, además del código desarrollado.
 
-1. tell me a joke (https://official-joke-api.appspot.com/)
-2. im bored + random / type (https://www.boredapi.com/)
+1. 👍 tell me a joke (https://official-joke-api.appspot.com/)
+2. 👍 im bored + random / type (https://www.boredapi.com/)
 3. next (detect context joke vs bored)
 
 Integración en web.

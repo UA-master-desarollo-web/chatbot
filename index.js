@@ -19,9 +19,12 @@ app.post("/", (req, res) => {
   let type = req.body.queryResult.intent.displayName;
   let reqUrl = "";
 
-  if (type == "tell me a joke") {
+  if (type == "tell me a joke" || type == "tell me a joke - repeat") {
     reqUrl = "http://official-joke-api.appspot.com/random_joke";
-  } else if (type == "give me an activity") {
+  } else if (
+    type == "give me an activity" ||
+    type == "give me an activity - repeat"
+  ) {
     reqUrl = "http://www.boredapi.com/api/activity/";
   } else {
     res.status(400).send("Invalid type");
