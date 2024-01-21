@@ -4,6 +4,19 @@ import fetch from "node-fetch";
 const app = express();
 const port = process.env.PORT || 3000;
 
+const favorites = {
+  color: "blue",
+  food: "pizza",
+  drink: "coffee",
+  animal: "dog",
+  movie: "The Dark Knight",
+  book: "The Alchemist",
+  song: "Bohemian Rhapsody",
+  sport: "soccer",
+  subject: "math",
+  season: "summer",
+};
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -25,8 +38,25 @@ app.post("/", (req, res) => {
   } else if (type.includes("activity")) {
     type = "give me an activity";
     reqUrl = "http://www.boredapi.com/api/activity/";
+  } else if (type.includes("fact")) {
+    type = "give me a fact";
+    reqUrl = "https://uselessfacts.jsph.pl/random.json?language=en";
+  } else if (type.includes("favorite")) {
+    type = "tell me your favorite";
+    favorite = req.body.queryResult.parameters["favorite"];
+    res.status(200).send({
+      fulfillmentMessages: [
+        {
+          text: {
+            text: [
+              "My favorite " + favorite + " is " + favorites[favorite] + ".",
+            ],
+          },
+        },
+      ],
+    });
   } else {
-    res.status(400).send("Invalid typeee");
+    res.status(400).send("Invalid type");
   }
 
   fetch(reqUrl, {
@@ -73,11 +103,17 @@ let processActivity = (activity) => {
   );
 };
 
+let processFact = (fact) => {
+  return fact.text;
+};
+
 let processResponse = (type, response) => {
   if (type == "tell me a joke") {
     return processJoke(response);
   } else if (type == "give me an activity") {
     return processActivity(response);
+  } else if (type == "give me a fact") {
+    return processFact(response);
   } else {
     return "Invalid type";
   }
