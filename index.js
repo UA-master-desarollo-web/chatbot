@@ -7,12 +7,12 @@ const port = process.env.PORT || 3000;
 const favorites = {
   color: "blue",
   food: "tacos",
-  drink: "tea",
+  drink: "iced tea",
   animal: "dogs",
   movie: "Tangled",
   book: "Any book by Jules Verne",
   song: "fractures by Illenium",
-  sport: "Formula 1 (f1)",
+  sport: "Formula 1 (F1)",
   subject: "math",
   season: "summer",
 };
